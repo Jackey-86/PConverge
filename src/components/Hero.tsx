@@ -42,7 +42,7 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-400 shadow-2xl transform rotate-3 hover:rotate-6 transition-transform duration-300">
               <div className="absolute inset-4 bg-white rounded-xl flex items-center justify-center p-8">
                 <img
-                  src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"
+                  src="https://media.licdn.com/dms/image/v2/C4D0BAQE7tgZ1VWHjyA/company-logo_200_200/company-logo_200_200/0/1679762149154/petroconverge_logo?e=1755734400&v=beta&t=SOx5rUlCdKKbQqJql1Dx0wWtOmLm9CO8FYjtb01QsZU auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"
                   alt="PConverge Logo"
                   className="w-full h-full object-contain rounded-lg"
                 />
