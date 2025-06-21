@@ -40,13 +40,12 @@ const Hero: React.FC<HeroProps> = ({ scrollToSection }) => {
           
           <div className="relative">
             <div className="aspect-square rounded-2xl bg-gradient-to-br from-blue-400 to-cyan-400 shadow-2xl transform rotate-3 hover:rotate-6 transition-transform duration-300">
-              <div className="absolute inset-4 bg-white rounded-xl flex items-center justify-center">
-                <div className="text-center">
-                  <div className="w-24 h-24 mx-auto mb-4 bg-gradient-to-br from-blue-100 to-cyan-100 rounded-full flex items-center justify-center">
-                    <span className="text-3xl font-bold text-blue-600">PC</span>
-                  </div>
-                  <p className="text-gray-600 font-medium">Your Success Partner</p>
-                </div>
+              <div className="absolute inset-4 bg-white rounded-xl flex items-center justify-center p-8">
+                <img
+                  src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=400&h=400&fit=crop"
+                  alt="PConverge Logo"
+                  className="w-full h-full object-contain rounded-lg"
+                />
               </div>
             </div>
           </div>
