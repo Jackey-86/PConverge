@@ -1,9 +1,14 @@
 import React from 'react';
 import { Calendar, User, ArrowRight, BookOpen } from 'lucide-react';
 
-const Blog: React.FC = () => {
+interface BlogProps {
+  onReadMore: (postId: string) => void;
+}
+
+const Blog: React.FC<BlogProps> = ({ onReadMore }) => {
   const blogPosts = [
     {
+      id: 'peak-performance-habits', // Unique ID for routing to individual post
       title: '5 Essential Habits for Peak Performance',
       excerpt: 'Discover the daily practices that high achievers use to maintain excellence and overcome challenges in their professional and personal lives.',
       image: 'https://images.pexels.com/photos/1181677/pexels-photo-1181677.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
@@ -13,6 +18,7 @@ const Blog: React.FC = () => {
       readTime: '5 min read'
     },
     {
+      id: 'goal-setting-science', // Unique ID for routing to individual post
       title: 'The Science of Goal Setting: Why Most People Fail',
       excerpt: 'Learn evidence-based strategies for setting and achieving goals that actually stick, based on psychological research and coaching best practices.',
       image: 'https://images.pexels.com/photos/1181244/pexels-photo-1181244.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
@@ -22,6 +28,7 @@ const Blog: React.FC = () => {
       readTime: '7 min read'
     },
     {
+      id: 'mindful-leadership', // Unique ID for routing to individual post
       title: 'Mindful Leadership in the Digital Age',
       excerpt: 'How modern leaders can cultivate presence, emotional intelligence, and authentic connections in an increasingly connected world.',
       image: 'https://images.pexels.com/photos/1181396/pexels-photo-1181396.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
@@ -31,6 +38,7 @@ const Blog: React.FC = () => {
       readTime: '6 min read'
     },
     {
+      id: 'limiting-beliefs', // Unique ID for routing to individual post
       title: 'Breaking Through Limiting Beliefs',
       excerpt: 'Identify and overcome the mental barriers that prevent you from reaching your full potential and living the life you truly desire.',
       image: 'https://images.pexels.com/photos/1181456/pexels-photo-1181456.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
@@ -40,6 +48,7 @@ const Blog: React.FC = () => {
       readTime: '8 min read'
     },
     {
+      id: 'work-life-integration', // Unique ID for routing to individual post
       title: 'The Art of Work-Life Integration',
       excerpt: 'Move beyond balance to integration. Learn how to create harmony between your professional ambitions and personal fulfillment.',
       image: 'https://images.pexels.com/photos/1181533/pexels-photo-1181533.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
@@ -49,6 +58,7 @@ const Blog: React.FC = () => {
       readTime: '6 min read'
     },
     {
+      id: 'building-resilience', // Unique ID for routing to individual post
       title: 'Building Resilience in Uncertain Times',
       excerpt: 'Develop the mental strength and adaptability needed to thrive during challenges and emerge stronger from setbacks.',
       image: 'https://images.pexels.com/photos/1181690/pexels-photo-1181690.jpeg?auto=compress&cs=tinysrgb&w=600&h=400&fit=crop',
@@ -132,7 +142,11 @@ const Blog: React.FC = () => {
                     <BookOpen size={16} className="mr-1" />
                     <span className="text-sm">{post.readTime}</span>
                   </div>
-                  <button className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200">
+                  {/* Read More button - navigates to individual blog post page */}
+                  <button 
+                    onClick={() => onReadMore(post.id)}
+                    className="inline-flex items-center text-blue-600 font-medium hover:text-blue-700 transition-colors duration-200"
+                  >
                     Read More
                     <ArrowRight size={16} className="ml-1" />
                   </button>
