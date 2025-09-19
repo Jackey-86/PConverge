@@ -2,7 +2,6 @@ import React, { useState, useEffect } from 'react';
 import Header from './components/Header';
 import Hero from './components/Hero';
 import About from './components/About';
-import Services from './components/Services';
 import Testimonials from './components/Testimonials';
 import Blog from './components/Blog';
 import Contact from './components/Contact';
@@ -13,7 +12,7 @@ function App() {
 
   useEffect(() => {
     const handleScroll = () => {
-      const sections = ['home', 'about', 'services', 'testimonials', 'blog', 'contact'];
+      const sections = ['home', 'about', 'testimonials', 'blog', 'contact'];
       const currentSection = sections.find(section => {
         const element = document.getElementById(section);
         if (element) {
@@ -45,7 +44,6 @@ function App() {
       <main>
         <Hero scrollToSection={scrollToSection} />
         <About />
-        <Services />
         <Testimonials />
         <Blog />
         <Contact />
