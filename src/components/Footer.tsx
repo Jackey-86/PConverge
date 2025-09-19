@@ -1,16 +1,16 @@
 import React from 'react';
 import { Facebook, Twitter, Linkedin, Instagram, Mail, Phone, MapPin } from 'lucide-react';
 
-const Footer: React.FC = () => {
+// FOOTER COMPONENT PROPS
+// onNavigate: Function to handle navigation to legal pages (privacy, terms, faq)
+interface FooterProps {
+  onNavigate?: (page: string) => void;
+}
+
+const Footer: React.FC<FooterProps> = ({ onNavigate }) => {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
-    services: [
-      { name: 'Personal Life Coaching', href: '#services' },
-      { name: 'Career Development', href: '#services' },
-      { name: 'Team Coaching', href: '#services' },
-      { name: 'Mindfulness & Wellness', href: '#services' },
-    ],
     company: [
       { name: 'About Us', href: '#about' },
       { name: 'Our Approach', href: '#about' },
@@ -19,9 +19,9 @@ const Footer: React.FC = () => {
     ],
     support: [
       { name: 'Contact Us', href: '#contact' },
-      { name: 'FAQ', href: '#' },
-      { name: 'Privacy Policy', href: '#' },
-      { name: 'Terms of Service', href: '#' },
+      { name: 'FAQ', href: 'faq' },
+      { name: 'Privacy Policy', href: 'privacy' },
+      { name: 'Terms of Service', href: 'terms' },
     ]
   };
 
@@ -36,7 +36,7 @@ const Footer: React.FC = () => {
     <footer className="bg-gray-900 text-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Main Footer Content */}
-        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-5 gap-8">
+        <div className="py-16 grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* Brand Section */}
           <div className="lg:col-span-2">
             <h3 className="text-2xl font-bold bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent mb-4">
@@ -80,23 +80,6 @@ const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Services */}
-          <div>
-            <h4 className="text-lg font-semibold mb-6">Services</h4>
-            <ul className="space-y-3">
-              {footerLinks.services.map((link, index) => (
-                <li key={index}>
-                  <a
-                    href={link.href}
-                    className="text-gray-400 hover:text-white transition-colors duration-200"
-                  >
-                    {link.name}
-                  </a>
-                </li>
-              ))}
-            </ul>
-          </div>
-
           {/* Company */}
           <div>
             <h4 className="text-lg font-semibold mb-6">Company</h4>
@@ -120,12 +103,15 @@ const Footer: React.FC = () => {
             <ul className="space-y-3">
               {footerLinks.support.map((link, index) => (
                 <li key={index}>
-                  <a
-                    href={link.href}
+                  <button
+                    onClick={() => link.href.startsWith('#') ? 
+                      document.getElementById(link.href.slice(1))?.scrollIntoView({ behavior: 'smooth' }) : 
+                      onNavigate?.(link.href)
+                    }
                     className="text-gray-400 hover:text-white transition-colors duration-200"
                   >
                     {link.name}
-                  </a>
+                  </button>
                 </li>
               ))}
             </ul>
@@ -159,15 +145,18 @@ const Footer: React.FC = () => {
               © {currentYear} PConverge. All rights reserved.
             </p>
             <div className="flex space-x-6 mt-4 md:mt-0">
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+              <button onClick={() => onNavigate?.('privacy')} className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
                 Privacy Policy
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+              </button>
+              <button onClick={() => onNavigate?.('terms')} className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
                 Terms of Service
-              </a>
-              <a href="#" className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+              </button>
+              <button onClick={() => onNavigate?.('faq')} className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
+                FAQ
+              </button>
+              <button onClick={() => onNavigate?.('privacy')} className="text-gray-400 hover:text-white text-sm transition-colors duration-200">
                 Cookie Policy
-              </a>
+              </button>
             </div>
           </div>
         </div>

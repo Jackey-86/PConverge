@@ -7,11 +7,14 @@ import Blog from './components/Blog';
 import Contact from './components/Contact';
 import Footer from './components/Footer';
 import BlogPost from './pages/BlogPost';
+import PrivacyPolicy from './pages/PrivacyPolicy';
+import FAQ from './pages/FAQ';
+import TermsOfService from './pages/TermsOfService';
 
 function App() {
   const [activeSection, setActiveSection] = useState('home');
   // State to manage blog post navigation
-  const [currentView, setCurrentView] = useState<'home' | 'blog-post'>('home');
+  const [currentView, setCurrentView] = useState<'home' | 'blog-post' | 'privacy' | 'faq' | 'terms'>('home');
   const [currentPostId, setCurrentPostId] = useState<string>('');
 
   useEffect(() => {
@@ -51,18 +54,37 @@ function App() {
   };
 
   // Function to navigate back to main page
-  const handleBackToBlog = () => {
+  const handleBackToHome = () => {
     setCurrentView('home');
     setCurrentPostId('');
-    // Scroll to blog section when returning
+    // Scroll to top when returning to home
     setTimeout(() => {
-      scrollToSection('blog');
+      window.scrollTo({ top: 0, behavior: 'smooth' });
     }, 100);
+  };
+
+  // Function to navigate to legal pages
+  const handleNavigateToPage = (page: string) => {
+    setCurrentView(page as 'privacy' | 'faq' | 'terms');
+    window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
   // Render blog post page if viewing individual post
   if (currentView === 'blog-post') {
-    return <BlogPost postId={currentPostId} onBack={handleBackToBlog} />;
+    return <BlogPost postId={currentPostId} onBack={handleBackToHome} />;
+  }
+
+  // Render legal pages
+  if (currentView === 'privacy') {
+    return <PrivacyPolicy onBack={handleBackToHome} />;
+  }
+
+  if (currentView === 'faq') {
+    return <FAQ onBack={handleBackToHome} />;
+  }
+
+  if (currentView === 'terms') {
+    return <TermsOfService onBack={handleBackToHome} />;
   }
 
   // Render main website
@@ -76,7 +98,7 @@ function App() {
         <Blog onReadMore={handleReadMore} />
         <Contact />
       </main>
-      <Footer />
+      <Footer onNavigate={handleNavigateToPage} />
     </div>
   );
 }
